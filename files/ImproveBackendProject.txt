@@ -1,0 +1,1 @@
+Refactor the existing backend project by adding validations, better error handling, and improved UI using Tailwind CSS. Prepare it for GitHub and portfolio use.
