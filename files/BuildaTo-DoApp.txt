@@ -1,1 +1,0 @@
-Create a simple to-do application using Express and EJS where users can add, view, and delete tasks. Focus on CRUD operations and clean folder structure.
