@@ -1,3 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit File</title>
+
+<style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#1f2933;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:#2d3748;
+    padding:30px;
+    width:450px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+    color:#e2e8f0;
+    margin-bottom:20px;
+}
+
+textarea{
+    width:100%;
+    height:150px;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #4a5568;
+    background:#1f2933;
+    color:#e2e8f0;
+    resize:none;
+    font-size:14px;
+}
+
+textarea:focus{
+    outline:none;
+    border:1px solid #2f855a;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:#2f855a;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#276749;
+}
+
+a{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    text-decoration:none;
+    color:#68d391;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
 <h1>Edit File</h1>
 
 <form action="/update/<%= filename %>" method="POST">
@@ -8,4 +92,9 @@
 
 </form>
 
-<a href="/">Back</a>
+<a href="/">← Back</a>
+
+</div>
+
+</body>
+</html>

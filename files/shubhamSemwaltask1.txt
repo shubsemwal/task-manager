@@ -1,2 +1,0 @@
-Description:
-Complete Node.js fundamentals including modules, file system (fs), HTTP server, and Express basics. Practice by building small APIs and handling routes properly

@@ -1,5 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>View File</title>
+
+<style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#1f2933;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:#2d3748;
+    padding:30px;
+    width:450px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+    color:#e2e8f0;
+    margin-bottom:20px;
+}
+
+.content{
+    background:#1f2933;
+    color:#e2e8f0;
+    padding:15px;
+    border-radius:6px;
+    border:1px solid #4a5568;
+    min-height:120px;
+    line-height:1.5;
+}
+
+a{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    text-decoration:none;
+    color:#68d391;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
 <h1><%= filename %></h1>
 
-<p><%= content %></p>
+<div class="content">
+<%= content %>
+</div>
 
-<a href="/">Back</a>
+<a href="/">← Back</a>
+
+</div>
+
+</body>
+</html>

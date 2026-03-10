@@ -1,1 +1,0 @@
-Solve at least 5 Data Structures and Algorithms problems daily using JavaScript. Focus on arrays, strings, recursion, and problem-solving patterns.

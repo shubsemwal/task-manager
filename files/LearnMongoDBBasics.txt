@@ -1,1 +1,0 @@
-Understand MongoDB concepts like collections, documents, schema design, and basic CRUD operations. Connect MongoDB with Node.js using Mongoose.
