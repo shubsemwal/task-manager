@@ -1,63 +1,96 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 
-app.set('view engine','ejs');
+app.set("view engine", "ejs");
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get('/', function(req, res) {
-    fs.readdir('./files', function(err, files) {
+// HOME PAGE
+app.get("/", function (req, res) {
+  const dir = path.join(__dirname, "files");
 
-        if (err) {
-            console.log(err);
-            return res.render("index", { files: [] });
-        }
+  fs.readdir(dir, function (err, files) {
+    if (err) {
+      console.log("Error reading folder:", err);
+      return res.render("index", { files: [] });
+    }
 
-        res.render("index", { files: files || [] });
-    });
+    res.render("index", { files: files || [] });
+  });
 });
 
-app.post('/create',function(req,res){
-   fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`,
-   req.body.description,
-   function(err){
-      res.redirect('/');
-   });
+// CREATE TASK
+app.post("/create", function (req, res) {
+  const fileName = req.body.title.split(" ").join("") + ".txt";
+  const filePath = path.join(__dirname, "files", fileName);
+
+  fs.writeFile(filePath, req.body.description, function (err) {
+    if (err) {
+      console.log("File create error:", err);
+    }
+
+    res.redirect("/");
+  });
 });
 
-/* READ FILE */
-app.get('/file/:filename',function(req,res){
-    fs.readFile(`./files/${req.params.filename}`,"utf-8",function(err,data){
-        res.render("show",{filename:req.params.filename,content:data});
-    });
+// READ FILE
+app.get("/file/:filename", function (req, res) {
+  const filePath = path.join(__dirname, "files", req.params.filename);
+
+  fs.readFile(filePath, "utf-8", function (err, data) {
+    if (err) {
+      return res.send("File not found");
+    }
+
+    res.render("show", { filename: req.params.filename, content: data });
+  });
 });
 
-/* EDIT PAGE */
-app.get('/edit/:filename',function(req,res){
-    fs.readFile(`./files/${req.params.filename}`,"utf-8",function(err,data){
-        res.render("edit",{filename:req.params.filename,content:data});
-    });
+// EDIT PAGE
+app.get("/edit/:filename", function (req, res) {
+  const filePath = path.join(__dirname, "files", req.params.filename);
+
+  fs.readFile(filePath, "utf-8", function (err, data) {
+    if (err) {
+      return res.send("File not found");
+    }
+
+    res.render("edit", { filename: req.params.filename, content: data });
+  });
 });
 
-/* UPDATE FILE */
-app.post('/update/:filename',function(req,res){
-    fs.writeFile(`./files/${req.params.filename}`,req.body.description,function(err){
-        res.redirect('/');
-    });
+// UPDATE FILE
+app.post("/update/:filename", function (req, res) {
+  const filePath = path.join(__dirname, "files", req.params.filename);
+
+  fs.writeFile(filePath, req.body.description, function (err) {
+    if (err) {
+      console.log("Update error:", err);
+    }
+
+    res.redirect("/");
+  });
 });
 
-/* DELETE FILE */
-app.get('/delete/:filename',function(req,res){
-    fs.unlink(`./files/${req.params.filename}`,function(err){
-        res.redirect('/');
-    });
+// DELETE FILE
+app.get("/delete/:filename", function (req, res) {
+  const filePath = path.join(__dirname, "files", req.params.filename);
+
+  fs.unlink(filePath, function (err) {
+    if (err) {
+      console.log("Delete error:", err);
+    }
+
+    res.redirect("/");
+  });
 });
 
+// SERVER PORT
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
