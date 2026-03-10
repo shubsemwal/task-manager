@@ -8,6 +8,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+const filesDir = path.join(__dirname, "files");
+
+if (!fs.existsSync(filesDir)) {
+  fs.mkdirSync(filesDir);
+}
 // HOME PAGE
 app.get("/", function (req, res) {
   const dir = path.join(__dirname, "files");
